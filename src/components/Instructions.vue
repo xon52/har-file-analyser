@@ -3,7 +3,7 @@
     <button @click="show = !show">Instructions</button>
     <div class="instructions" :class="{ show: show }">
       <ol>
-        <li>Open your target app (e.g. <a href="https://app.safetyculture.com/">iAuditor</a>)</li>
+        <li>Open your target webapp</li>
         <li>"Inspect" the page, and go to the Network tab (Chrome)</li>
         <li>Refresh the page (so all Network can be recorded)</li>
         <li>Use iAuditor as you please (to create session data you want to analyse)</li>

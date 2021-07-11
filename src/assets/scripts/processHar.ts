@@ -1,5 +1,3 @@
-import { resolveComponent } from 'vue'
-
 export default async (file: File) => {
   const content = await readFile(file)
   const parsed = JSON.parse(content)
@@ -36,10 +34,8 @@ const toData = (parsed: any) => {
   parsed.log.entries.forEach((e: any) => {
     const url = e.request.url
     const ref =
-      e.request.headers
-        .find((e: any) => e.name === 'Referer' || e.name === 'referer')
-        ?.value.replace('https://app.safetyculture.com', '')
-        .replace('https://analytics.safetyculture.com', '') || 'Undefined'
+      e.request.headers.find((e: any) => e.name === 'Referer' || e.name === 'referer')?.value.replace('https://', '') ||
+      'Undefined'
     const status = e.response.status
     const size = e.response.content.size
     // Check if already recorded
@@ -67,7 +63,7 @@ const toData = (parsed: any) => {
       return
     }
     // Remove duplicates from arrays
-    data.forEach(e=>{
+    data.forEach((e) => {
       e.referrers = [...new Set(e.referrers)]
       e.statuses = [...new Set(e.statuses)]
       e.sizes = [...new Set(e.sizes)]
